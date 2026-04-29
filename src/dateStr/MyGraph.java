@@ -88,7 +88,14 @@ public class MyGraph<Ttype>{
 		}
 		throw new Exception("Mekle virsotne nav atrasta");
 	}
-	
-	
-	
+
+	public void print() throws Exception{
+		if(isEmpty()) {
+			throw new Exception("Grafs ir tukšs un to nevar izprintēt");
+		}
+		
+		for(int i = 0; i < howManyElements; i++) {
+			System.out.println(vertices[i].toString());//toString no MyVerticeNode
+		}
+	}	
 }
