@@ -5,6 +5,7 @@ public class MyVerticalNode<Ttype> {
 	private Ttype element;
 	private MyEdgeNode firstEdgeNode = null;
 	
+	
 	public MyEdgeNode getFirstEdgeNode() {
 		return firstEdgeNode;
 	}
@@ -37,5 +38,4 @@ public class MyVerticalNode<Ttype> {
 		
 		return result;
 		}
-	
-}
+	}
