@@ -95,7 +95,16 @@ public class MyGraph<Ttype>{
 		}
 		
 		for(int i = 0; i < howManyElements; i++) {
-			System.out.println(vertices[i].toString());//toString no MyVerticeNode
+			System.out.println(vertices[i].getElement()+ ": ");//toString no MyVerticeNode
+			MyEdgeNode currentNode = vertices[i].getFirstEdgeNode();
+			while(currentNode!=null) {
+				int indexVerticeTo= currentNode.getIndexOfVerticalTo();
+				System.out.println("-> "+ vertices[indexVerticeTo].getElement()+ " ---"+ currentNode.getWeight()
+				+ "Km ----");
+				currentNode= currentNode.getNextEdgeNode();
+				
+			}
+			System.out.println();
 		}
 	}	
 }

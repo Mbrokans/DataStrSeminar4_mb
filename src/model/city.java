@@ -34,7 +34,7 @@ public class city {
 	}
 	
 	public String toString() {
-		return title + ", " + areaKm2 + " km^2 [" + postalCode + "]";
+		return title;
 	}
 
 }
