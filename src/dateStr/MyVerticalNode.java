@@ -25,6 +25,10 @@ public class MyVerticalNode<Ttype> {
 	public void setFirstEdgeNode(MyEdgeNode firstEdgeNode) {
 		this.firstEdgeNode = firstEdgeNode;
 	}
+	
+	public MyVerticalNode(Ttype element) {
+		setElement(element);
+	}
 
 	public String toString() {
 		String result = element + ": ";

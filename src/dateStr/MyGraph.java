@@ -52,7 +52,7 @@ public class MyGraph<Ttype>{
 		if(isFull()) {
 			resize();
 		}
-		MyVerticalNode newVerticeNode =  new MyVerticalNode();
+		MyVerticalNode newVerticeNode =  new MyVerticalNode(element);
 		vertices[howManyElements]=newVerticeNode;
 		howManyElements++;
 		
