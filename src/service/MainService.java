@@ -32,9 +32,16 @@ public class MainService {
 			map.addEdge(c4, c2, 55);
 			map.addEdge(c2, c3, 67);
 			map.addEdge(c7, c5, 51);
+			
+
 			//TODO papildināt ar citiem ceļiem
 			
 			map.print();
+			
+			System.out.println(map.getPath(c1, c2));
+			System.out.println(map.getPath(c1, c5));
+			
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

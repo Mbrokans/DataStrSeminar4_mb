@@ -1,5 +1,8 @@
 package dateStr;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 public class MyGraph<Ttype>{
 	private MyVerticalNode<Ttype>[] vertices;
 	private final int DEFAULT_SIZE = 5;
@@ -107,4 +110,60 @@ public class MyGraph<Ttype>{
 			System.out.println();
 		}
 	}	
+	public void setAllVerticesToIsVisitedFalse() throws Exception {
+		for(int i=0;i<howManyElements;i++) {
+			vertices[i].setVisited(false);
+		}
+	}
+		private ArrayList<MyVerticalNode> getAllNeighbours(int indexOfvertice) {
+			
+			MyVerticalNode<Ttype> verticeFrom= vertices[indexOfvertice];
+			ArrayList<MyVerticalNode> allNeighbours = new ArrayList<MyVerticalNode>();
+			MyEdgeNode currentEdgeNode= verticeFrom.getFirstEdgeNode();
+			while (currentEdgeNode!=null) {
+				int indexOfNeighbour = currentEdgeNode.getIndexOfVerticalTo();
+				MyVerticalNode neighbour = vertices[indexOfNeighbour];
+				allNeighbours.add(neighbour);
+				currentEdgeNode=currentEdgeNode.getNextEdgeNode();
+			}
+			return allNeighbours;
+		}
+		public String getPath(Ttype elementFrom, Ttype elementTo) throws Exception{
+			if(isEmpty()) {
+				throw  new Exception("ir tukss");
+			}
+			if(elementFrom==null || elementTo == null) {
+				throw new Exception("kads no ievades parametriem nav atbilstos");
+			}
+			int indexVerticeFrom= findVertice(elementFrom);
+			int indexVerticeTo = findVertice(elementTo);
+			
+			setAllVerticesToIsVisitedFalse();
+			boolean isPath = false;
+			
+			Stack<MyVerticalNode> stack = new Stack<MyVerticalNode>();
+			stack.push(vertices[indexVerticeFrom]);
+			String path = "";
+			do {
+				MyVerticalNode verticeTemp = stack.pop();
+				if(verticeTemp.getElement().equals(elementTo)) {
+					path +="-> " + verticeTemp.getElement();
+					isPath= true;
+				}
+				else {
+					path+="-> " + verticeTemp.getElement();
+					int index = findVertice((Ttype)verticeTemp.getElement());
+					ArrayList<MyVerticalNode> neighbour = getAllNeighbours(index);
+					for(MyVerticalNode tempV: neighbour) {
+						if(!tempV.isVisited()) {
+							stack.push(tempV);
+						}
+					}
+				}
+			}while(!stack.isEmpty()&&!isPath);
+			if(!isPath) {
+				path = "Ceļš no " + elementFrom + " uz " + elementTo + " nav atrasts";
+			}
+			return path;
+	}
 }
